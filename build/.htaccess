@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/(bundles/index.html)?$ 
+RewriteCond %{REQUEST_URI} !.(gif|jpe?g|png|css|js)$ 
+RewriteCond %{REQUEST_URI} !.(ttf|otf|oet|woff|woff2)$ 
+RewriteRule .* / [L,R=302]
+
+
+

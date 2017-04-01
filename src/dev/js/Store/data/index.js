@@ -1,11 +1,12 @@
-import { LANDSCAPE, actions } from './actions'
+import { actions } from './actions'
 import { mutations } from './mutations'
 import { getters } from './getters'
 
 const state = {
-  width: 0,
-  height: 0,
-  orientation: LANDSCAPE
+  home: {},
+  contact: {},
+  links: [],
+  projects: []
 }
 
 export default {

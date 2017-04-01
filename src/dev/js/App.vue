@@ -6,6 +6,7 @@
 
 <script>
 import Root from './components/Root'
+import * as data from 'SRC/data.json'
 
 export default {
   name: 'app',
@@ -13,20 +14,25 @@ export default {
     Root
   },
   created () {
-    this.setListenerResizing()
+    const { $store } = this
+    this.setupStore($store, data)
   },
   methods: {
-    setListenerResizing () {
-      this.$store.dispatch('getWindowSize')
-      window.onresize = () => {
-        this.$store.dispatch('getWindowSize')
-      }
+    setupStore (store, data) {
+      store.dispatch('fillJson', data)
+      // this.setListenerResizing(store)
     }
+    // setListenerResizing (store) {
+    //   store.dispatch('getWindowSize')
+    //   window.onresize = () => {
+    //     store.dispatch('getWindowSize')
+    //   }
+    // }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
 }
 </style>

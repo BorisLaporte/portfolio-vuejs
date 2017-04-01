@@ -1,10 +1,83 @@
-// @font-face {
-//   font-family: "Mohave-BoldItalic";
-//   src: url('../../assets/font/Mohave-BoldItalic.eot'); /* IE9+ Compat Modes */
-//   src: url('../../assets/font/Mohave-BoldItalic.woff2') format('woff2'), /* Super modern browsers */
-//        url('../../assets/font/Mohave-BoldItalic.woff') format('woff'), /* Modern browsers */
-//        url('../../assets/font/Mohave-BoldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
-//        url('../../assets/font/Mohave-BoldItalic.otf')  format('OpenType'), /* Something */
-// }
+@font-face {
+  font-family: "AGaramondPro-Bold";
+  src: url('~FONT/AGaramondPro-Bold.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-Bold.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-Bold.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Bold.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-Bold.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "AGaramondPro-BoldItalic";
+  src: url('~FONT/AGaramondPro-BoldItalic.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-BoldItalic.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-BoldItalic.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-BoldItalic.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-BoldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-BoldItalic.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "AGaramondPro-Italic";
+  src: url('~FONT/AGaramondPro-Italic.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-Italic.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-Italic.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Italic.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-Italic.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "AGaramondPro-Regular";
+  src: url('~FONT/AGaramondPro-Regular.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-Regular.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-Regular.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Regular.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-Regular.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "AGaramondPro-Semibold";
+  src: url('~FONT/AGaramondPro-Semibold.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-Semibold.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-Semibold.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Semibold.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-Semibold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-Semibold.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "AGaramondPro-SemiboldItalic";
+  src: url('~FONT/AGaramondPro-SemiboldItalic.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/AGaramondPro-SemiboldItalic.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/AGaramondPro-SemiboldItalic.woff') format('woff'), /* Modern browsers */
+       url('~FONT/AGaramondPro-SemiboldItalic.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/AGaramondPro-SemiboldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/AGaramondPro-SemiboldItalic.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "HarmoniaSansProCyr-SemiBd";
+  src: url('~FONT/HarmoniaSansProCyr-SemiBd.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/HarmoniaSansProCyr-SemiBd.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/HarmoniaSansProCyr-SemiBd.woff') format('woff'), /* Modern browsers */
+       url('~FONT/HarmoniaSansProCyr-SemiBd.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/HarmoniaSansProCyr-SemiBd.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/HarmoniaSansProCyr-SemiBd.otf')  format('OpenType'); /* Something */
+}
+@font-face {
+  font-family: "CamingoCode-Bold";
+  src: url('~FONT/CamingoCode-Bold.eot'); /* IE9+ Compat Modes */
+  src: url('~FONT/CamingoCode-Bold.woff2') format('woff2'), /* Super modern browsers */
+       url('~FONT/CamingoCode-Bold.woff') format('woff'), /* Modern browsers */
+       url('~FONT/CamingoCode-Bold.svg#svgFontName') format('svg'), /* Modern browsers */
+       url('~FONT/CamingoCode-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('~FONT/CamingoCode-Bold.otf')  format('OpenType'); /* Something */
+}
 
-// $mohave: 'Mohave-BoldItalic';
+$garamond: 'AGaramondPro-Regular';
+$garamondItalic: 'AGaramondPro-Italic';
+$garamondSemibold: 'AGaramondPro-Semibold';
+$garamondSemiboldItalic: 'AGaramondPro-SemiboldItalic';
+$garamondBold: 'AGaramondPro-Bold';
+$garamondBoldItalic: 'AGaramondPro-BoldItalic';
+
+$camingo: 'CamingoCode-Bold';
+
+$harmonia: 'HarmoniaSansProCyr-SemiBd';

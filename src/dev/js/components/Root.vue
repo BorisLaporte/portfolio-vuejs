@@ -1,21 +1,27 @@
 <template>
   <div id="root">
     <Home/>
+    <FixedHeader />
+    <Progression />
   </div>
 </template>
 
 <script>
 import Home from './Home'
+import Progression from './Progression'
+import FixedHeader from './FixedHeader'
 
 export default {
   name: 'root',
   components: {
-    Home
+    Home,
+    Progression,
+    FixedHeader
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #root {
 }
 </style>

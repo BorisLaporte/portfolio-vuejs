@@ -72,8 +72,8 @@ module.exports = {
         options: {
           sourceMap: false,
           loaders: {
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1&data=@import "./src/dev/sass/main"',
-            scss: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/dev/sass/main";'
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1&data=@import "./src/dev/sass/variables"',
+            scss: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/dev/sass/variables";'
           }
         }
       },
@@ -92,6 +92,11 @@ module.exports = {
         test: /\.(eot|svg|ttf|otf|woff2?)$/,
         loader: 'file-loader?name=fonts/[name].[ext]',
         include: path.join(__dirname, './src/assets/font')
+      },
+      {
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader'],
+        include: path.join(__dirname, './src/dev/sass/main')
       }
     ]
   }

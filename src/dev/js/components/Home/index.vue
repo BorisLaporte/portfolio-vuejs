@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="sub-wrapper">
     <div class="container">
       <h1 class="title elm">{{ home.hi }}</h1>
       <div class="who-am-i elm" v-html="whoAmIMarked"></div>
@@ -30,24 +30,7 @@ export default {
 
 <style lang="scss">
 #home {
-  font-size: 1.6em;
-  line-height: 1.24;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
   .container{
-    width: 100%;
-    max-width: 920px;
-    padding: 0 50px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    @media screen and (max-width: 400px) {
-      padding: 50px 10%;
-    }
 
     .title{
       padding-top: 80px;

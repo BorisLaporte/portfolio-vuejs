@@ -22,12 +22,6 @@ export default {
       store.dispatch('fillJson', data)
       // this.setListenerResizing(store)
     }
-    // setListenerResizing (store) {
-    //   store.dispatch('getWindowSize')
-    //   window.onresize = () => {
-    //     store.dispatch('getWindowSize')
-    //   }
-    // }
   }
 }
 </script>

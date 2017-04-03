@@ -1,6 +1,6 @@
 <template>
-  <div id="home" class="sub-wrapper">
-    <div class="container">
+  <div id="home" class="sub-wrapper section big-text">
+    <div class="container in-middle">
       <h1 class="title elm">{{ home.hi }}</h1>
       <div class="who-am-i elm" v-html="whoAmIMarked"></div>
       <div class="status elm" v-html="statusMarked"></div>

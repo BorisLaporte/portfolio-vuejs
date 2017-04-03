@@ -7,7 +7,10 @@
   },
   "contact": {
     "punchline": "Let's talk together ✌️",
-    "mail": "boris.laporte@protonmail.com"
+    "mail": {
+      "name": "boris.laporte@protonmail.com",
+      "url":  "mailto:boris.laporte@protonmail.com"
+    }
   },
   "links": [
     {
@@ -41,23 +44,25 @@
     {
       "name": "Ronan Polin",
       "title": "Ronan Polin's portfolio",
-      "desc": "This project was made for my friend Ronan, who were looking for a developer to build his portfolio. This project forced me to rethink my way to make my react apps. Why ? Because this portfolio doesn't really have any templates, a lot of details change depending on different variables. I learned a new way to build my components so I can easly handle all variations and now, Ronan and I are proud to show it.",
+      "desc": "This is my friend Ronan Polin's new portfolio,\n\rit was a real pleasure to work with him on this.\n\rGo check out his works ! He's good at what he does.",
       "kind": "Personal project",
-      "background": "ronanpolin.png",
+      "thumbnail": "ronanpolin.png",
       "technos": ["ReactJS", "Greensock", "Scroll Magic", "Redux"],
+      "mentions": [],
       "date": "2017-03-20",
       "role": "Developer Front-end",
       "responsive": true,
       "link": "http://ronanpolin.com",
-      "color": "#000000"
+      "color": "#6a2f99"
     },
     {
       "name": "Lipsty",
       "title": "Absolutely flirty",
-      "desc": "How to make an application about cocktails that won't be the same than the others ? Mix seduction and cocktail recipes and you get Lipsty ! Thanks to the Absolut ( Brand ) API this app will advises you the best cocktails to seduce the one you desire.",
+      "desc": "How to make an application about cocktails\n\rthat won't be the same than the others ?\n\rMix seduction and cocktail recipes and you get Lipsty !",
       "kind": "School project",
-      "background": "lipsty.png",
+      "thumbnail": "lipsty.png",
       "technos": ["Android", "Absolut API", "Java"],
+      "mentions": [],
       "date": "2016-06-16",
       "role": "Developer Android",
       "responsive": null,
@@ -67,11 +72,18 @@
     {
       "name": "Claude Shannon",
       "title": "The world in binary",
-      "desc": "In the honor of Claude Shannon's 100th birthday. The CNRS asked us to make a website tracing the most important parts of his life. But who is Claude Shannon ? Father of the theory of information, he is the one who discovered that every problems could be resumed to a chain of conditions true or false, this discovery was the begining of the binary system and of the informatic. Without him, our world wouldn't be the same today.",
+      "desc": "In the honor of Claude Shannon's 100th birthday.\n\rThe CNRS asked us to make a website tracing\n\rthe most important parts of his life.",
       "kind": "School project",
-      "background": "claudeshannon.png",
+      "thumbnail": "claudeshannon.png",
       "technos": ["ReactJS", "Greensock", "Hammer.JS", "Scroll Magic"],
+      "mentions": [
+        {
+          "name": "SOTD | CSS Design Awards",
+          "url": "http://www.cssdesignawards.com/sites/centenaire-de-claude-shannon/29371/"
+        }
+      ],
       "date": "2016-07-14",
+      "role": "Developer Front-end",
       "responsive": true,
       "link": "http://centenaire-shannon.cnrs.fr/",
       "color": "#ff6969"
@@ -79,13 +91,13 @@
     {
       "name": "Timokids",
       "title": "An educational app for children",
-      "desc": "When I was in Internship with Timokids, I had several missions to improve their website. After a little study of it, I advised them that it would be better to make a new one, more maintainable for future modification and while I was at it, make a new design while taking account for the SEO.",
+      "desc": "When I was in Internship with Timokids, I had\n\rseveral missions revelant to their website. After a little study,\n\rI advised them that it would be better to make a new one,\n\rmore maintainable for future modification and while I was at it,\n\rmake a new design while taking account for the SEO.",
       "kind": "Internship",
-      "background": "timokids.png",
+      "thumbnail": "timokids.png",
       "technos": ["Wordpress", "Js", "Greensock", "Scroll Magic"],
+      "mentions": [],
       "date": "2016-10-16",
       "role": "Developer and Designer",
-      "teamates": [],
       "responsive": true,
       "link": "https://www.timokids.com.br",
       "color": "#b76f3d"
@@ -93,10 +105,11 @@
     {
       "name": "TribuCancer",
       "title": "Together we are stronger",
-      "desc": "Made for the association of the same name.\r\nIts goal, is to help the sick and their relatives to live better with the decease. Thanks to differents services to break the social isolation and activities to escape. These allow thousands of people to fight their decease and rediscover the joys of life.",
+      "desc": "Made for the association of the same name.\n\rIts goal, is to help the sick and their relatives\n\rto live better with the decease.",
       "kind": "Freelance",
-      "background": "tribucancer.png",
+      "thumbnail": "tribucancer.png",
       "technos": ["Symfony", "Twig"],
+      "mentions": [],
       "date": "2016-05-21",
       "role": "Developer Back-end",
       "responsive": true,
@@ -106,10 +119,11 @@
     {
       "name": "Geek-Art",
       "title": "The alphabet of Geek-Art",
-      "desc": "This project is directly inspired by the book \"L'alphabet du Geek-Art\", which includes many artists and some of their works in alphabetical order. In account for the rather short time to realize it, only the artists from A to M are listed there. We did put the emphasis on navigation so that we could browse the site as if it were flipping through the pages of the same book.",
+      "desc": "\"L'alphabet du Geek-Art\", which includes many\n\rartists and some of their works in alphabetical order.",
       "kind": "School project",
-      "background": "geekart.png",
+      "thumbnail": "geekart.png",
       "technos": ["Js", "D3.js", "Handlebars", "Greensock"],
+      "mentions": [],
       "date": "2015-11-27",
       "role": "Developer Front-end",
       "responsive": false,

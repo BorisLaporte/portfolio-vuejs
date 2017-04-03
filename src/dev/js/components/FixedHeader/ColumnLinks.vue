@@ -15,13 +15,7 @@ export default {
   components: {
     SimpleLink
   },
-  props: ['name', 'content'],
-  mounted () {
-    console.log(this.content)
-  },
-  updated () {
-    console.log(this.name)
-  }
+  props: ['name', 'content']
 }
 </script>
 

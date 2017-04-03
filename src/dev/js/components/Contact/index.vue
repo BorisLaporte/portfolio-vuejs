@@ -1,8 +1,10 @@
 <template>
-  <div id="contact" class="sub-wrapper">
-    <div class="container">
+  <div id="contact" class="sub-wrapper section big-text">
+    <div class="container in-middle">
       <div class="punchline">{{ contact.punchline }}</div>
-      <div class="mail">{{ contact.mail }}</div>
+      <div class="mail">
+        <SimpleLink :data="contact.mail"></SimpleLink>
+      </div>
     </div>
   </div>
 </template>
@@ -10,8 +12,13 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import SimpleLink from '../SimpleLink'
+
 export default {
   name: 'contact',
+  components: {
+    SimpleLink
+  },
   computed: {
     ...mapGetters([
       'contact'
@@ -23,13 +30,12 @@ export default {
 <style lang="scss">
 #contact {
   
-
-  .container{
+ .container{
     .punchline{
-      
+      font-family: $garamondBold;
       font-size: 2.8em;
     }
-    .mail{
+    .mail a{
       color: $pink;
     }
   }

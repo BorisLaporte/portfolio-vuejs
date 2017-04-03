@@ -1,5 +1,5 @@
 <template>
-  <a :href="data.url" class="simple-link">{{ data.name }}</a>
+  <a :href="data.url" target="_blank" class="simple-link">{{ data.name }}</a>
 </template>
 
 <script>

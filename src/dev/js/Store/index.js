@@ -9,7 +9,8 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const store = new Vuex.Store({
   modules: {
-    data
+    data,
+    responsive
   },
   strict: debug
 })

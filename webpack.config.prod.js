@@ -23,6 +23,7 @@ module.exports = {
       'IMG': path.resolve(__dirname, 'src/assets/img'),
       'FONT': path.resolve(__dirname, 'src/assets/font'),
       'SASS': path.resolve(__dirname, 'src/dev/sass'),
+      'STORE': path.resolve(__dirname, 'src/dev/js/Store'),
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, 'src'),
       // Resolve path for ScrollMagic's GSAP plugin

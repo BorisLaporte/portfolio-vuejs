@@ -51,25 +51,25 @@ export default {
   height: 100%;
   width: 960px;
   padding-right: 250px;
-  @media screen and (max-width: 1650px) {
+  @media screen and (max-height: 900px) {
     width: 835px;
     padding-right: 220px;
   }
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-height: 800px) {
     width: 730px;
     padding-right: 190px;
   }
 
   &.pair .content-project{
-    bottom: 13%;
-    @media screen and (max-width: 800px) {
-      bottom: 10%;
+    bottom: 10%;
+    @media screen and (max-height: 800px) {
+      bottom: 7%;
     }
   }
   &:not(.pair) .content-project{
-    top: 13%;
-    @media screen and (max-width: 800px) {
-      bottom: 10%;
+    top: calc(10% + 60px);
+    @media screen and (max-height: 800px) {
+      top: calc(7% + 60px);
     }
   }
   .content-project{
@@ -77,11 +77,11 @@ export default {
     width: 460px;
     height: 300px;
     left: 27%;
-    @media screen and (max-width: 1650px) {
+    @media screen and (max-height: 900px) {
       width: 400px;
       height: 260px;
     }
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-height: 800px) {
       width: 350px;
       height: 230px;
     }

@@ -1,6 +1,7 @@
 <template>
   <div id="root">
     <div id="app-container">
+      <RandCharBack />
       <div class="wrapper" ref="wrapper" >
         <Home/>
         <Projects />
@@ -18,6 +19,7 @@ import Projects from './Projects'
 import Contact from './Contact'
 import Progression from './Progression'
 import FixedHeader from './FixedHeader'
+import RandCharBack from './RandCharBack'
 
 export default {
   name: 'root',
@@ -26,7 +28,8 @@ export default {
     Projects,
     Contact,
     Progression,
-    FixedHeader
+    FixedHeader,
+    RandCharBack
   },
   mounted () {
     this.switchOrientationScroll = this.switchOrientationScroll.bind(this)
@@ -34,8 +37,8 @@ export default {
   },
   methods: {
     setHorizontalScroll: function () {
-      const body = document.getElementsByTagName('body')[0]
-      body.addEventListener('wheel', this.switchOrientationScroll)
+      // const body = document.getElementsByTagName('body')[0]
+      document.body.addEventListener('wheel', this.switchOrientationScroll)
     },
     switchOrientationScroll: function (e) {
       const { wrapper } = this.$refs
@@ -66,6 +69,7 @@ export default {
     top: 0;
 
     .wrapper{
+      position: relative;
       white-space: nowrap;
       overflow: hidden;
       height: 100%;

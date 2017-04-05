@@ -20,7 +20,8 @@ export default {
   methods: {
     setupStore (store, data) {
       store.dispatch('fillJson', data)
-      // this.setListenerResizing(store)
+      store.dispatch('getWindowSize')
+      window.addEventListener('resize', store.dispatch.bind(store, 'getWindowSize'))
     }
   }
 }

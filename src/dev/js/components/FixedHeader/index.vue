@@ -24,7 +24,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  padding: 30px 60px;
+  padding: 30px 60px 0 60px;
   height: auto;
   display: flex;
   align-items: flex-start;

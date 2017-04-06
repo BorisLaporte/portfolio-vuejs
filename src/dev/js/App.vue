@@ -6,12 +6,14 @@
 
 <script>
 import Root from './components/Root'
+import Preloader from './components/Preloader'
 import * as data from 'SRC/data.json'
 
 export default {
   name: 'app',
   components: {
-    Root
+    Root,
+    Preloader
   },
   created () {
     const { $store } = this
@@ -29,5 +31,10 @@ export default {
 
 <style lang="scss">
 #app {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 </style>

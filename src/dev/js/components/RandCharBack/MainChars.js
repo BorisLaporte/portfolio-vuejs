@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import { TweenMax, Power2 } from 'gsap'
+import { TimelineLite, TweenMax, Power2 } from 'gsap'
 
 import TextPixi from './TextPixi'
 
@@ -7,6 +7,7 @@ import TextPixi from './TextPixi'
 
 class MainChars {
   constructor (options) {
+    this.tl = new TimelineLite()
     this.style = {
       fontFamily: options.fontFamily,
       fontSize: options.fontSize,
@@ -51,12 +52,50 @@ class MainChars {
     this.app.start()
   }
 
+  resume () {
+    const { app, tl } = this
+    app.start()
+    tl.clear()
+    tl.to(app.stage, 0.5, {
+      alpha: 1,
+      ease: Power2.easeOut
+    })
+  }
+
+  finish () {
+    const { app, tl } = this
+    const stop = app.stop.bind(app)
+    tl.clear()
+    tl.to(app.stage, 0.5, {
+      alpha: 0,
+      ease: Power2.easeOut,
+      onComplete: stop
+    })
+  }
+
+  resize (width, height) {
+    const { app, container } = this
+    app.stop()
+    app.stage.removeChild(container)
+    app.view.style.width = width
+    app.view.style.height = height
+    app.renderer.resize(width, height)
+    const newContainer = new PIXI.Container()
+    app.stage.addChild(newContainer)
+    this.container = newContainer
+    this.size = { width: width, height: height }
+    this.calcSpecs()
+    this.initBoard()
+    app.start()
+  }
+
   init () {
     const { animate, target, style, spaceWidth, spaceHeight, size, limitAlpha } = this
     const { width, height } = size
     const app = new PIXI.Application(width, height, { transparent: true })
     target.appendChild(app.view)
 
+    app.renderer.autoResize = true
     app.stop()
 
     var container = new PIXI.Container()

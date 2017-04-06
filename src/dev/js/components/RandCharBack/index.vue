@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import * as statusTypes from 'STORE/scroll/status-types'
 import MainChars from './MainChars'
 
 export default {
@@ -11,9 +13,25 @@ export default {
     return {
       fontFamily: 'CamingoCode-Bold',
       fontSize: 16 + 'px',
-      fill: '#eee',
+      fill: '#fff',
       spaceWidth: 4,
       spaceHeight: 8
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'windowSize',
+      'status'
+    ])
+  },
+  watch: {
+    windowSize: function (newWindowSize) {
+      const { randCB } = this
+      const { width, height } = newWindowSize
+      randCB.resize(width, height)
+    },
+    status: function (newStatus) {
+      this.onChangeStatus(newStatus)
     }
   },
   mounted () {
@@ -26,6 +44,26 @@ export default {
       spaceWidth: spaceWidth,
       spaceHeight: spaceHeight
     })
+    this.randCB = _randCB
+  },
+  methods: {
+    onChangeStatus (status) {
+      const { randCB } = this
+      const { HOME, PROJECTS, CONTACT } = statusTypes
+      switch (status) {
+        case HOME:
+          randCB.resume()
+          break
+        case PROJECTS:
+          randCB.finish()
+          break
+        case CONTACT:
+          randCB.resume()
+          break
+        default:
+          break
+      }
+    }
   }
 }
 </script>

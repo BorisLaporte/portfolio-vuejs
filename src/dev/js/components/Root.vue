@@ -3,9 +3,11 @@
     <div id="app-container">
       <RandCharBack />
       <div class="wrapper" ref="wrapper" >
-        <Home/>
-        <Projects />
-        <Contact /> 
+        <div class="scroller" ref="scroller">
+          <Home ref="home"/>
+          <Projects ref="projects"/>
+          <Contact ref="contact"/>
+        </div>
       </div>
     </div>
     <FixedHeader />
@@ -14,12 +16,16 @@
 </template>
 
 <script>
+import ScrollMagic from 'ScrollMagic'
+
 import Home from './Home'
 import Projects from './Projects'
 import Contact from './Contact'
 import Progression from './Progression'
 import FixedHeader from './FixedHeader'
 import RandCharBack from './RandCharBack'
+
+import * as types from 'STORE/scroll/mutation-types'
 
 export default {
   name: 'root',
@@ -31,15 +37,23 @@ export default {
     FixedHeader,
     RandCharBack
   },
+  data: function () {
+    return {
+      scController: null,
+      scScene: null
+    }
+  },
   mounted () {
     this.switchOrientationScroll = this.switchOrientationScroll.bind(this)
-    this.setHorizontalScroll()
+    this.init()
   },
   methods: {
-    setHorizontalScroll: function () {
+    init: function () {
       // const body = document.getElementsByTagName('body')[0]
       document.body.addEventListener('wheel', this.switchOrientationScroll)
+      this.setScrollMagic()
     },
+
     switchOrientationScroll: function (e) {
       const { wrapper } = this.$refs
       const { deltaY } = e
@@ -54,6 +68,29 @@ export default {
         wrapper.scrollLeft = finalScroll
       }
       e.preventDefault()
+    },
+
+    setScrollMagic: function () {
+      const { $refs, $store } = this
+      const { wrapper, scroller } = $refs
+      const { innerWidth } = window
+      const scController = this.scController = new ScrollMagic.Controller({
+        container: $refs.wrapper,
+        vertical: false
+      })
+
+      const mainScene = new ScrollMagic.Scene({
+        triggerElement: scroller,
+        reverse: true,
+        duration: scroller.clientWidth
+      })
+      .addTo(scController)
+
+      mainScene.on('progress', function (e) {
+        const calcProgress = wrapper.scrollLeft / (scroller.clientWidth - innerWidth)
+        $store.commit(types.PROGRESS, { progress: calcProgress })
+      })
+      $store.commit(types.INIT, { controller: scController })
     }
   }
 }
@@ -70,9 +107,20 @@ export default {
 
     .wrapper{
       position: relative;
-      white-space: nowrap;
+      top: 0;
+      left: 0;
       overflow: hidden;
-      height: 100%;
+      width: inherit;
+      height: inherit;
+
+      .scroller {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        width: auto;
+        height: 100%;
+      }
     }
   }
   

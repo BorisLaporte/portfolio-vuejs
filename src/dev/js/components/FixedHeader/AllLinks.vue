@@ -9,6 +9,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { TimelineLite, TweenLite, Power2 } from 'gsap'
 import ColumnLinks from './ColumnLinks'
 
 export default {
@@ -16,7 +17,13 @@ export default {
   components: {
     ColumnLinks
   },
+  data () {
+    return {
+      delay: 1
+    }
+  },
   mounted () {
+    this.enterAnim()
   },
   computed: {
     ...mapGetters([
@@ -24,6 +31,26 @@ export default {
     ]),
     isLinks () {
       return Object.keys(this.links) > 0
+    },
+    tl: function () {
+      return new TimelineLite()
+    }
+  },
+  methods: {
+    enterAnim: function () {
+      const { $el, tl, delay } = this
+      const allLinks = TweenLite.fromTo($el, 1,
+        {
+          opacity: 0,
+          y: -30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: Power2.easeOut
+        })
+      tl.clear()
+      tl.add([allLinks], delay)
     }
   }
 }

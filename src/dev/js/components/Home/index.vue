@@ -1,9 +1,11 @@
 <template>
   <div id="home" class="sub-wrapper section big-text">
-    <div class="container in-middle">
-      <h1 class="title elm">{{ home.hi }}</h1>
-      <div class="who-am-i elm" v-html="whoAmIMarked"></div>
-      <div class="status elm" v-html="statusMarked"></div>
+    <div class="container in-middle" ref="container">
+      <div>
+        <h1 ref="title" class="title elm">{{ home.hi }}</h1>
+        <div ref="whoAmI" class="who-am-i elm" v-html="whoAmIMarked"></div>
+        <div ref="status" class="status elm" v-html="statusMarked"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -12,7 +14,9 @@
 import { mapGetters } from 'vuex'
 import * as status from 'STORE/scroll/status-types'
 import * as types from 'STORE/scroll/mutation-types'
-import ScrollMagic from 'ScrollMagic'
+import { TimelineLite, TimelineMax, TweenLite, TweenMax, Power2 } from 'gsap'
+import ScrollMagic from 'scrollmagic'
+import 'animation.gsap'
 import marked from 'marked'
 
 export default {
@@ -32,18 +36,59 @@ export default {
     },
     statusMarked: function () {
       return marked(this.home.status, { sanitize: true, break: true })
+    },
+    tl: function () {
+      return new TimelineLite()
     }
-  },
-  mounted: function () {
   },
   watch: {
     getScController: function (newController) {
-      this.setScene(newController)
+      this.setSceneGlobal(newController)
+      // this.setSceneEvent(newController)
     }
   },
+  mounted () {
+    this.enterAnim()
+  },
   methods: {
-    setScene: function (controller) {
+    enterAnim: function () {
+      const { $el, tl, $refs } = this
+      const title = TweenLite.fromTo($refs.title, 0.8,
+        {
+          opacity: 0,
+          x: -30
+        },
+        {
+          opacity: 1,
+          x: 0,
+          ease: Power2.easeOut
+        })
+      const whoAmI = TweenLite.fromTo($refs.whoAmI, 0.8,
+        {
+          opacity: 0,
+          x: -30
+        },
+        {
+          opacity: 1,
+          x: 0,
+          ease: Power2.easeOut
+        })
+      const status = TweenLite.fromTo($refs.status, 0.8,
+        {
+          opacity: 0,
+          x: -30
+        },
+        {
+          opacity: 1,
+          x: 0,
+          ease: Power2.easeOut
+        })
+      tl.clear()
+      tl.add([title], 0.2).add([whoAmI], '-=0.6').add([status], '-=0.6')
+    },
+    setSceneGlobal: function (controller) {
       const { $el } = this
+
       const scene = new ScrollMagic.Scene({
         triggerElement: $el,
         reverse: true,
@@ -73,6 +118,24 @@ export default {
     },
     onLeave: function () {
 
+    },
+    setSceneEvent (controller) {
+      const { $el, $refs } = this
+      const tl = new TimelineLite()
+      const tween = tl.to($refs.container, 0.5, {
+        opacity: 0,
+        scale: 0.95,
+        delay: 0.5
+      })
+
+      const scene = new ScrollMagic.Scene({
+        triggerElement: $refs.container,
+        reverse: true,
+        duration: $refs.container.clientWidth
+      })
+      .setPin($refs.container)
+      .setTween(tween)
+      .addTo(controller)
     }
   }
 }

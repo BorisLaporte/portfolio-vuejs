@@ -1,3 +1,5 @@
 export const INIT = 'INIT'
 export const NEW_STATUS = 'NEW_STATUS'
 export const PROGRESS = 'PROGRESS'
+export const START_SCROLL_BACK = 'START_SCROLL_BACK'
+export const FINISH_SCROLL_BACK = 'FINISH_SCROLL_BACK'

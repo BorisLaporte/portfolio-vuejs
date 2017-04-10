@@ -1,7 +1,7 @@
 <template>
   <div id="fixed-header">
-    <Logo />
-    <AllLinks />
+    <Logo/>
+    <AllLinks/>
   </div>
 </template>
 

@@ -1,12 +1,11 @@
 <template>
   <div id="root">
-    <div id="app-container">
-      <RandCharBack />
+    <div class="app-container">
       <div class="wrapper" ref="wrapper" >
         <div class="scroller" ref="scroller">
-          <Home ref="home"/>
-          <Projects ref="projects"/>
-          <Contact ref="contact"/>
+          <Home />
+          <Projects />
+          <Contact />
         </div>
       </div>
     </div>
@@ -16,16 +15,16 @@
 </template>
 
 <script>
-import ScrollMagic from 'ScrollMagic'
+import ScrollMagic from 'scrollmagic'
+import * as types from 'STORE/scroll/mutation-types'
+import { mapGetters } from 'vuex'
+import { TimelineLite, TweenLite, Power2 } from 'gsap'
 
 import Home from './Home'
 import Projects from './Projects'
 import Contact from './Contact'
 import Progression from './Progression'
 import FixedHeader from './FixedHeader'
-import RandCharBack from './RandCharBack'
-
-import * as types from 'STORE/scroll/mutation-types'
 
 export default {
   name: 'root',
@@ -34,8 +33,29 @@ export default {
     Projects,
     Contact,
     Progression,
-    FixedHeader,
-    RandCharBack
+    FixedHeader
+  },
+  computed: {
+    ...mapGetters([
+      'scrollBack'
+    ])
+  },
+  watch: {
+    scrollBack: function (value) {
+      const { $refs } = this
+      const { scrollLeft, scrollWidth } = $refs.wrapper
+      if (value) {
+        const duration = (scrollLeft / scrollWidth) + 1
+        const tl = new TimelineLite()
+        const tween = TweenLite.to($refs.wrapper, duration,
+          {
+            scrollLeft: 0,
+            ease: Power2.easeOut
+          })
+        tl.clear()
+        tl.add([tween]).add(this.finishScrollBack)
+      }
+    }
   },
   data: function () {
     return {
@@ -44,12 +64,12 @@ export default {
     }
   },
   mounted () {
+    this.finishScrollBack = this.finishScrollBack.bind(this)
     this.switchOrientationScroll = this.switchOrientationScroll.bind(this)
     this.init()
   },
   methods: {
     init: function () {
-      // const body = document.getElementsByTagName('body')[0]
       document.body.addEventListener('wheel', this.switchOrientationScroll)
       this.setScrollMagic()
     },
@@ -68,6 +88,11 @@ export default {
         wrapper.scrollLeft = finalScroll
       }
       e.preventDefault()
+    },
+
+    finishScrollBack: function () {
+      const { $store } = this
+      $store.commit(types.FINISH_SCROLL_BACK)
     },
 
     setScrollMagic: function () {
@@ -98,7 +123,7 @@ export default {
 
 <style lang="scss" scoped>
 #root {
-  #app-container{
+  .app-container{
     position: relative;
     height: 100%;
     width: 100%;

@@ -1,18 +1,15 @@
-import { actions } from './actions'
+// import { actions } from './actions'
 import { mutations } from './mutations'
 import { getters } from './getters'
 
 const state = {
-  home: {},
-  contact: {},
-  links: [],
-  projects: [],
-  webpackContext: null
+  loadingStatus: 0,
+  ready: false,
+  loaded: false
 }
 
 export default {
   state,
   getters,
-  actions,
   mutations
 }

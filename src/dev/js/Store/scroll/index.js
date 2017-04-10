@@ -5,8 +5,9 @@ import { getters } from './getters'
 
 const state = {
   controller: null,
-  status: status.HOME,
-  progress: 0
+  status: status.LOADING,
+  progress: 0,
+  scrollBack: false
 }
 
 export default {

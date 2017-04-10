@@ -13,7 +13,7 @@
 import { mapGetters } from 'vuex'
 import * as status from 'STORE/scroll/status-types'
 import * as types from 'STORE/scroll/mutation-types'
-import ScrollMagic from 'ScrollMagic'
+import ScrollMagic from 'scrollmagic'
 
 import SimpleLink from '../SimpleLink'
 
@@ -77,7 +77,7 @@ export default {
 
 <style lang="scss">
 #contact {
-  
+  pointer-events: none;
  .container{
     .punchline{
       font-family: $garamondBold;

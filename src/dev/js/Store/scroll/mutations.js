@@ -9,5 +9,11 @@ export const mutations = {
   },
   [types.PROGRESS] (state, { progress }) {
     state.progress = progress
+  },
+  [types.START_SCROLL_BACK] (state) {
+    state.scrollBack = true
+  },
+  [types.FINISH_SCROLL_BACK] (state) {
+    state.scrollBack = false
   }
 }

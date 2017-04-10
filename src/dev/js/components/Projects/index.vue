@@ -10,7 +10,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ScrollMagic from 'ScrollMagic'
+import ScrollMagic from 'scrollmagic'
 import * as status from 'STORE/scroll/status-types'
 import * as types from 'STORE/scroll/mutation-types'
 

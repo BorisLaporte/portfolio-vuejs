@@ -1,4 +1,8 @@
 export const getters = {
+  allData (state) {
+    const { home, contact, links, projects } = state
+    return { home, contact, links, projects }
+  },
   home (state) {
     const { home } = state
     return home
@@ -14,5 +18,9 @@ export const getters = {
   projects (state) {
     const { projects } = state
     return projects
+  },
+  webpackContext (state) {
+    const { webpackContext } = state
+    return webpackContext
   }
 }

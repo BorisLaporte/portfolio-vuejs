@@ -4,6 +4,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 import { TimelineLite, Power2, TweenLite } from 'gsap'
 
 export default {
@@ -11,10 +12,19 @@ export default {
   computed: {
     ...mapGetters([
       'progress'
-    ]),
-    tl: function () {
-      return new TimelineLite()
-    }
+    ])
+  },
+  // data () {
+  //   return {
+  //     tl: null
+  //   }
+  // },
+  // data () {
+  //   return {
+  //     tl: new TimelineLite()
+  //   }
+  // },
+  mounted () {
   },
   watch: {
     progress: function (newProgress) {
@@ -23,20 +33,10 @@ export default {
   },
   methods: {
     setScale: function (scale) {
-      const { tl, $el } = this
-      tl.clear()
-      tl.set($el,
+      const { $el } = this
+      TweenLite.set($el,
         {
           scaleX: scale
-        })
-    },
-    toScale: function (scale) {
-      const { tl, $el } = this
-      tl.clear()
-      tl.to($el, 0.5,
-        {
-          scaleX: scale,
-          ease: Power2.easeOut
         })
     }
   }

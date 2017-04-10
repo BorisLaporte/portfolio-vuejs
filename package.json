@@ -60,6 +60,7 @@
     "sass-font-face": "^1.0.1",
     "scrollmagic": "^2.0.5",
     "vue": "^2.2.6",
-    "vuex": "^2.2.1"
+    "vuex": "^2.2.1",
+    "webfontloader": "^1.6.27"
   }
 }

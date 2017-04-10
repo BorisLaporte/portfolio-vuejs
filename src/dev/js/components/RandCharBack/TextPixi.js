@@ -10,13 +10,14 @@ class TextPixi {
       charWidth: 0,
       charHeight: 0
     }
-    this.resolution = 2
+    this.resolution = 4
     this.spaceWidth = options.spaceWidth || 0
     this.spaceHeight = options.spaceHeight || 0
 
     this.chars = 'azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN1234567890<>?;/:!§ù%*µ$£ø^+=})]@àç\_è|-[({#é~&'
 
     this.textures = []
+    this.letters = []
     this.renderer = renderer
 
     this.init()
@@ -39,22 +40,31 @@ class TextPixi {
   }
 
   createTextureChar (char) {
-    const { style, resolution, textures, renderer } = this
+    const { style, resolution, textures, renderer, letters } = this
     const letter = new PIXI.Text(char, style)
     letter.resolution = resolution
     // letter.cacheAsBitmap = true
-    const texture = renderer.generateTexture(letter, 1, 2)
+    const texture = renderer.generateTexture(letter, 1, resolution)
     textures.push(texture)
+    letters[char] = texture
   }
 
   createPixiChar (args = {}) {
-    const { limitAlpha, size, resolution, textures } = this
+    const { limitAlpha, size, resolution, textures, letters } = this
     const { charWidth, charHeight } = size
     const x = args.x || 0
     const y = args.y || 0
     const alpha = args.alpha || limitAlpha
-    const rand = Math.floor(Math.random() * textures.length)
-    const newTexture = textures[rand]
+    let newTexture
+    if (typeof args.char === 'string') {
+      newTexture = letters[args.char]
+      if (newTexture === undefined) {
+        return false
+      }
+    } else {
+      const rand = Math.floor(Math.random() * textures.length)
+      newTexture = textures[rand]
+    }
     const sprite = new PIXI.Sprite(newTexture)
     sprite.x = x * charWidth
     sprite.y = y * charHeight

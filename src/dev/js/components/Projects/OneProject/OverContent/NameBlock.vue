@@ -1,7 +1,7 @@
   <template>
   <div class="name-block">
     <div class="content">
-      <div class="title">{{ name }}</div>
+      <a :href="link" target="_blank" class="title">{{ name }}</a>
       <div class="role">{{ role }}</div>
     </div>
   </div>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name: 'name-block',
-  props: ['name', 'role']
+  props: ['name', 'role', 'link']
 }
 </script>
 

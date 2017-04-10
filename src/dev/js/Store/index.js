@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import responsive from './responsive'
 import scroll from './scroll'
 import data from './data'
+import loading from './loading'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
   modules: {
     data,
     responsive,
-    scroll
+    scroll,
+    loading
   },
   strict: debug
 })

@@ -5,7 +5,7 @@
       <div class="mentions" v-if="mentions.length > 0" >
         <div class="title">Mentions</div>
         <template v-for="_mention in mentions">
-          <a :href="_mention.url" class="text">{{ _mention.name }}</a>
+          <a :href="_mention.url" target="_blank" class="text">{{ _mention.name }}</a>
         </template>
       </div>
     </div>

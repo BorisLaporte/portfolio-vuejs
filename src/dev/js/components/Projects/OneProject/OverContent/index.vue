@@ -1,6 +1,6 @@
 <template>
   <div class="over-content" :style="{backgroundColor: data.color}">
-    <NameBlock :name="data.name" :role="data.role" />
+    <NameBlock :name="data.name" :role="data.role" :link="data.link" />
     <MoreDetails :desc="data.desc" :mentions="data.mentions" />
   </div>
 </template>

@@ -1,23 +1,46 @@
 <template>
   <div class="one-project" v-bind:class="{ pair: !isOdd }">
-    <div class="content-project" @click="onClick" >
-      <Thumbnail :src="data.thumbnail" :name="data.name" />
-      <NbPlace :data="naturalIndex" />
-      <Technos :data="data.technos" />
-      <OverContent :data="overPartContent" ></OverContent>
+    <div class="content-project" ref="main" >
+      <Thumbnail
+      :didEnter="didEnter"
+      delay="0.1"
+      :src="data.thumbnail" 
+      :name="data.name" />
+      <NbPlace
+      :isOn="isOn"
+      :data="naturalIndex" />
+      <Technos
+      :didEnter="didEnter"
+      delay="0.6" 
+      :data="data.technos" />
+      <OverContent
+      :didEnter="didEnter"
+      delay="0.3" 
+      :data="overPartContent" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ScrollMagic from 'scrollmagic'
+
 import Thumbnail from './Thumbnail'
 import Technos from './Technos'
 import OverContent from './OverContent'
 import NbPlace from './NbPlace'
 
+import { EventBus } from './inner-bus'
+
 export default {
   name: 'one-project',
   props: ['data', 'index'],
+  data () {
+    return {
+      didEnter: false,
+      isOn: false
+    }
+  },
   components: {
     Thumbnail,
     Technos,
@@ -25,9 +48,12 @@ export default {
     NbPlace
   },
   computed: {
+    ...mapGetters([
+      'getScController'
+    ]),
     overPartContent: function () {
-      const { color, role, name, desc, mentions } = this.data
-      return { color, role, name, desc, mentions }
+      const { color, role, name, desc, mentions, link } = this.data
+      return { color, role, name, desc, mentions, link }
     },
     naturalIndex: function () {
       return this.index + 1
@@ -39,6 +65,47 @@ export default {
   methods: {
     onClick: function (e) {
       console.log(e)
+    },
+    setScene: function (controller) {
+      const { $el } = this
+      const scene = new ScrollMagic.Scene({
+        triggerElement: $el,
+        reverse: true,
+        duration: $el.clientWidth
+      })
+      .addTo(controller)
+
+      const onEnter = this.onEnter.bind(this)
+      const onLeave = this.onLeave.bind(this)
+
+      scene.on('enter leave', function (event) {
+        switch (event.type) {
+          case 'enter':
+            onEnter()
+            break
+          case 'leave':
+            onLeave()
+            break
+          default:
+            break
+        }
+      })
+    },
+    onEnter: function () {
+      const { $store } = this
+      this.isOn = true
+      if (!this.didEnter){
+        this.didEnter = true
+        EventBus.$emit('test', 'lol')
+      }
+    },
+    onLeave: function () {
+      this.isOn = false
+    }
+  },
+  watch: {
+    getScController: function (newController) {
+      this.setScene(newController)
     }
   }
 }

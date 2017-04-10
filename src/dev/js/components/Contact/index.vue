@@ -77,7 +77,6 @@ export default {
 
 <style lang="scss">
 #contact {
-  pointer-events: none;
  .container{
     .punchline{
       font-family: $garamondBold;

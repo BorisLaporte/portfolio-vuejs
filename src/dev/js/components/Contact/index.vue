@@ -81,10 +81,13 @@ export default {
     .punchline{
       font-family: $garamondBold;
       font-size: 2.8em;
-      overflow: visible;
       user-select: none;
+      line-height: 2em;
     }
     .mail a{
+      position: relative;
+      top: -25px;
+      left: 0;
       color: $pink;
     }
   }

@@ -1,6 +1,12 @@
 <template>
   <div class="one-project" v-bind:class="{ pair: !isOdd }">
-    <a :href="data.link" target="_blank" class="content-project" ref="main" @click="onClick" >
+    <a 
+    :href="data.link"
+    target="_blank"
+    class="content-project"
+    ref="main"
+    @mouseover="onMouseOver"
+    @mouseleave="onMouseLeave">
       <Thumbnail
       :eventBus="eventBus"
       delay="0.1"
@@ -27,7 +33,6 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import ScrollMagic from 'scrollmagic'
 import { TweenLite, TimelineLite, Power2 } from 'gsap'
-import 'animation.gsap'
 
 import Thumbnail from './Thumbnail'
 import Technos from './Technos'
@@ -40,7 +45,8 @@ export default {
   data () {
     return {
       didEnter: false,
-      isOn: false
+      isOn: false,
+      mouseOver: false
     }
   },
   components: {
@@ -70,7 +76,18 @@ export default {
   methods: {
     onClick: function (e) {
       // e.preventDefault()
-      console.log(e)
+    },
+    onMouseOver: function (e) {
+      const { mouseOver, eventBus } = this
+      if (!mouseOver) {
+        this.mouseOver = true
+        eventBus.$emit('on-hover')
+      }
+    },
+    onMouseLeave: function (e) {
+      const { eventBus } = this
+      eventBus.$emit('leave-hover')
+      this.mouseOver = false
     },
     setScene: function (controller) {
       const { $el } = this
@@ -160,6 +177,8 @@ export default {
     width: 460px;
     height: 300px;
     left: 27%;
+    cursor: pointer;
+
     @media screen and (max-height: 900px) {
       width: 400px;
       height: 260px;
@@ -169,6 +188,5 @@ export default {
       height: 230px;
     }
   }
-  
 }
 </style>

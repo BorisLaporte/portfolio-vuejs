@@ -48,7 +48,12 @@
       "kind": "Personal project",
       "thumbnail": "./ronanpolin.png",
       "technos": ["ReactJS", "Greensock", "Scroll Magic", "Redux"],
-      "mentions": [],
+      "mentions": [
+        {
+          "name": "HM | Awwwards",
+          "url": "https://www.awwwards.com/sites/ronan-polin-portfolio"
+        }
+      ],
       "date": "2017-03-20",
       "role": "Developer Front-end",
       "responsive": true,

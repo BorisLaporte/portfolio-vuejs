@@ -3,7 +3,7 @@
   </div> -->
   <div class="wrapper-thumbnail">
     <div class="thumbnail" ref="thumbnail" >
-      <img :src="imgSource" :alt="name">
+      <img ref="img" :src="imgSource" :alt="name">
     </div>
     <div class="grid-reveal" ref="grid"></div>
   </div>
@@ -26,15 +26,40 @@ export default {
     },
     tl: function () {
       return new TimelineMax()
+    },
+    tlMouse: function () {
+      return new TimelineMax()
     }
   },
   mounted () {
     const { eventBus } = this
+    eventBus.$on('on-hover', this.onHover.bind(this))
+    eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('enter', this.enterAnim.bind(this))
   },
   methods: {
+    onHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.img, 0.4,
+        {
+          scale: 1.1,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
+    },
+    leaveHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.img, 0.4,
+        {
+          scale: 1,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
+    },
     enterAnim () {
-      const { tl, $el, $refs } = this
+      const { tl, $refs } = this
       const thumbnailTween = new TweenMax.to($refs.thumbnail, 0.8,
         {
           opacity: 1,
@@ -67,9 +92,11 @@ export default {
     transform: scale(0.8);
 
     img{
-      width: 100%;
+      width: 110%;
       display: block;
       z-index: -10;
+      transform: scale(1);
+      transform-origin: 50% 50%;
     }
   }
   .grid-reveal{

@@ -1,6 +1,6 @@
 <template>
   <div class="technos">
-    <div class="content">
+    <div class="content" ref="content">
       <div class="text" ref="text" >{{ allTechnos }}</div>
     </div>
   </div>
@@ -22,6 +22,9 @@ export default {
     tl: function () {
       return new TimelineMax()
     },
+    tlMouse: function () {
+      return new TimelineMax()
+    },
     tween: function () {
       const { $refs } = this
       return new TweenMax.fromTo($refs.text, 1,
@@ -38,6 +41,8 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('on-hover', this.onHover.bind(this))
+    eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
   },
   methods: {
@@ -54,6 +59,26 @@ export default {
           ease: Power2.easeInOut,
           delay: 0.8
         })
+    },
+    onHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.content, 0.4,
+        {
+          x: 30,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
+    },
+    leaveHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.content, 0.4,
+        {
+          x: 0,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
     },
     setupTween () {
       const { tl, tween } = this

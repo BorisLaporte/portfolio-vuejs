@@ -1,12 +1,15 @@
   <template>
   <div class="name-block">
     <div class="content">
-      <div ref="wrapperTitle" class="wrapper-title">
-        <div ref="name" class="title">{{ name }}</div> 
-        <!-- <a ref="name" :href="link" target="_blank" class="title">{{ name }}</a>  -->
+      <div ref="wrapperName" class="wrapper-name">
+        <div ref="mouseName" >
+          <div ref="name" class="name">{{ name }}</div>
+        </div>
       </div>
       <div ref="wrapperRole" class="wrapper-role">
-        <div ref="role" class="role">{{ role }}</div>
+        <div ref="mouseRole" >
+          <div ref="role" class="role">{{ role }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +23,9 @@ export default {
   props: ['name', 'role', 'link', 'eventBus'],
   computed: {
     tl: function () {
+      return new TimelineMax()
+    },
+    tlMouse: function () {
       return new TimelineMax()
     },
     paralaxName: function () {
@@ -49,13 +55,15 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('on-hover', this.onHover.bind(this))
+    eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
   },
   methods: {
     enterAnim () {
       const { $refs } = this
       const tl = new TimelineMax()
-      const name = new TweenLite.fromTo($refs.wrapperTitle, 1,
+      const name = new TweenLite.fromTo($refs.wrapperName, 1,
         {
           opacity: 0,
           x: -30
@@ -75,7 +83,37 @@ export default {
           x: 0,
           ease: Power2.easeInOut
         })
-      tl.add([name], 1).add([role], '-=0.8')
+      tl.add([name], 0.8).add([role], '-=0.8')
+    },
+    onHover () {
+      const { tlMouse, $refs } = this
+      const name = new TweenMax.to($refs.mouseName, 0.4,
+        {
+          x: -30,
+          ease: Power2.easeInOut
+        })
+      const role = new TweenMax.to($refs.mouseRole, 0.4,
+        {
+          x: -15,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([name, role])
+    },
+    leaveHover () {
+      const { tlMouse, $refs } = this
+      const name = new TweenMax.to($refs.mouseName, 0.4,
+        {
+          x: 0,
+          ease: Power2.easeInOut
+        })
+      const role = new TweenMax.to($refs.mouseRole, 0.4,
+        {
+          x: 0,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([name, role])
     },
     setupTween () {
       const { tl, paralaxName, paralaxRole } = this
@@ -104,10 +142,10 @@ export default {
   .content{
     text-align: left;
 
-    .wrapper-title{
+    .wrapper-name{
       opacity: 0;
 
-      .title{
+      .name{
         font-family: $harmonia;
         color: $white;
         font-size: 2.5em;

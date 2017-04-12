@@ -1,9 +1,9 @@
 <template>
   <div id="app" >
     <RandCharBack />
-    <Preloader/>
-    <Root v-if="this.isLoaded"/>
-    <!-- <Root /> -->
+    <!-- <Preloader/> -->
+    <!-- <Root v-if="this.isLoaded"/> -->
+    <Root />
   </div>
 </template>
 

@@ -2,15 +2,21 @@
   <div class="more-details">
     <div class="content">
       <div ref="wrapperDesc" class="wrapper-desc">
-        <div class="description" ref="desc" v-html="descMarked"></div> 
+        <div ref="mouseDesc">
+          <div class="description" ref="desc" v-html="descMarked"></div> 
+        </div>
       </div>
       <div class="mentions" ref="mentions" v-if="mentions.length > 0" >
         <div ref="wrapperTitle" class="wrapper-title">
-          <div class="title">Mentions</div>
+          <div ref="mouseTitle">
+            <div class="title">Mentions</div>
+          </div>
         </div>
         <template v-for="_mention in mentions">
-          <div ref="wrapperText" class="wrapper-text"> 
-            <a :href="_mention.url" target="_blank" class="text">{{ _mention.name }}</a>
+          <div ref="wrapperText" class="wrapper-text">
+            <div ref="mouseText">
+              <a :href="_mention.url" target="_blank" class="text">{{ _mention.name }}</a>
+            </div>
           </div>
         </template>
       </div>
@@ -32,6 +38,9 @@ export default {
     tl: function () {
       return new TimelineMax()
     },
+    tlMouse: function () {
+      return new TimelineMax()
+    },
     paralax: function () {
       const { $el } = this
       return new TweenMax.fromTo($el, 1,
@@ -48,6 +57,8 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('on-hover', this.onHover.bind(this))
+    eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
   },
   methods: {
@@ -64,7 +75,7 @@ export default {
           x: 0,
           ease: Power2.easeInOut
         })
-      tl.add([desc], 1.4)
+      tl.add([desc], 1.2)
       if ($refs.wrapperTitle !== undefined) {
         const title = new TweenLite.fromTo($refs.wrapperTitle, 0.8,
           {
@@ -92,6 +103,62 @@ export default {
         }
       }
       tl.play()
+    },
+    onHover () {
+      const { tlMouse, $refs } = this
+      const tweens = []
+      const desc = new TweenMax.to($refs.mouseDesc, 0.4,
+        {
+          y: -10,
+          ease: Power2.easeInOut
+        })
+      tweens.push(desc)
+      if ($refs.mouseTitle !== undefined) {
+        const title = new TweenMax.to($refs.mouseTitle, 0.4,
+          {
+            y: -5,
+            ease: Power2.easeInOut
+          })
+        tweens.push(title)
+        for (let i = 0; i < $refs.wrapperText.length; i++) {
+          const text = new TweenMax.to($refs.mouseText[i], 0.4,
+            {
+              y: 3,
+              ease: Power2.easeInOut
+            })
+          tweens.push(text)
+        }
+      }
+      tlMouse.clear()
+      tlMouse.add(tweens)
+    },
+    leaveHover () {
+      const { tlMouse, $refs } = this
+      const tweens = []
+      const desc = new TweenMax.to($refs.mouseDesc, 0.4,
+        {
+          y: 0,
+          ease: Power2.easeInOut
+        })
+      tweens.push(desc)
+      if ($refs.mouseTitle !== undefined) {
+        const title = new TweenMax.to($refs.mouseTitle, 0.4,
+          {
+            y: 0,
+            ease: Power2.easeInOut
+          })
+        tweens.push(title)
+        for (let i = 0; i < $refs.wrapperText.length; i++) {
+          const text = new TweenMax.to($refs.mouseText[i], 0.4,
+            {
+              y: 0,
+              ease: Power2.easeInOut
+            })
+          tweens.push(text)
+        }
+      }
+      tlMouse.clear()
+      tlMouse.add(tweens)
     },
     setupTween () {
       const { tl, paralax } = this
@@ -137,7 +204,12 @@ export default {
       .wrapper-text{
 
         .text{
+          padding-left: 0px;
+          transition: all 0.1s ease-in-out;
 
+          &:hover{
+            padding-left: 5px;
+          }
         }
       }
     }

@@ -34,6 +34,9 @@ export default {
     tl: function () {
       return new TimelineMax()
     },
+    tlMouse: function () {
+      return new TimelineMax()
+    },
     paralax: function () {
       const { $el } = this
       return new TweenMax.fromTo($el, 1,
@@ -50,6 +53,8 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('on-hover', this.onHover.bind(this))
+    eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
   },
   methods: {
@@ -74,7 +79,27 @@ export default {
           scale: 1,
           ease: Power2.easeInOut
         })
-      tl.add([wrapperColor, color], 0.6)
+      tl.add([wrapperColor, color], 0.4)
+    },
+    onHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.wrapperColor, 0.4,
+        {
+          scaleY: 1.2,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
+    },
+    leaveHover () {
+      const { tlMouse, $refs } = this
+      const tween = new TweenMax.to($refs.wrapperColor, 0.4,
+        {
+          scaleY: 1,
+          ease: Power2.easeInOut
+        })
+      tlMouse.clear()
+      tlMouse.add([tween])
     },
     setupTween () {
       const { tl, paralax } = this

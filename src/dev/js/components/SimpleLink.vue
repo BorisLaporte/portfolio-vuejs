@@ -15,5 +15,6 @@ export default {
   padding: 1px 0;
   margin: 1px 0;
   display: inline-block;
+  transition: opacity 0.2s ease-out;
 }
 </style>

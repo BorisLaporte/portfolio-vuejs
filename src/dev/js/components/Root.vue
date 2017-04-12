@@ -135,6 +135,7 @@ export default {
       top: 0;
       left: 0;
       overflow: hidden;
+      scroll-behavior: smooth;
       width: inherit;
       height: inherit;
 

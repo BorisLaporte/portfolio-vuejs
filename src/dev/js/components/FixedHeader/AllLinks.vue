@@ -1,7 +1,7 @@
 <template>
   <div id="all-links">
-    <template v-for="value in links">
-      <ColumnLinks :name="value.name" :content="value.content" />
+    <template v-for="(value, index) in links">
+      <ColumnLinks :name="value.name" :content="value.content" :index="index" />
     </template>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    this.enterAnim()
+    // this.enterAnim()
   },
   computed: {
     ...mapGetters([

@@ -10,7 +10,7 @@ class TextPixi {
       charWidth: 0,
       charHeight: 0
     }
-    this.resolution = 4
+    this.resolution = options.resolution || 4
     this.spaceWidth = options.spaceWidth || 0
     this.spaceHeight = options.spaceHeight || 0
 

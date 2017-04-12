@@ -81,6 +81,8 @@ export default {
     .punchline{
       font-family: $garamondBold;
       font-size: 2.8em;
+      overflow: visible;
+      user-select: none;
     }
     .mail a{
       color: $pink;

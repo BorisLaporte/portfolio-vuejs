@@ -74,6 +74,7 @@ class MainChars {
   init () {
     const { target, style, spaceWidth, spaceHeight, size, limitAlpha } = this
     const { width, height } = size
+    PIXI.resolution = 4
     const app = new PIXI.Application(width, height, { transparent: true })
     target.appendChild(app.view)
 
@@ -257,7 +258,7 @@ class MainChars {
         alpha: 0,
         ease: Power2.easeIn
       })
-    tl.add(tween).add(stop)
+    tl.add([tween]).add(stop)
   }
 
   fadeInHardText (statusLoading = 1, alpha = 1, callback) {

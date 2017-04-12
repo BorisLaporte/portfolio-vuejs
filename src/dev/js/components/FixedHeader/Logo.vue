@@ -20,9 +20,7 @@ export default {
   name: 'Logo',
   data: function () {
     return {
-      delay: 0.8,
-      actualRotation: 0,
-      animating: false
+      delay: 0.8
     }
   },
   computed: {
@@ -31,7 +29,6 @@ export default {
     }
   },
   mounted: function () {
-    this.setAnimating = this.setAnimating.bind(this)
     this.enterAnim()
   },
   methods: {
@@ -42,61 +39,13 @@ export default {
       $store.commit(types.START_SCROLL_BACK)
     },
     mouseOver: function (e) {
-      const { $refs, tl, actualRotation, animating } = this
-      const time = 0.2
-      if (!animating) {
-        const square = new TweenLite.to($refs.square, time,
-          {
-            rotation: -actualRotation - 10,
-            ease: Power2.easeOut
-          })
-        const text = new TweenLite.to($refs.text, time + 0.2,
-          {
-            rotation: actualRotation + 10,
-            ease: Power2.easeOut
-          })
-        tl.clear()
-        tl.add([square, text])
-      }
+      
     },
     mouseLeave: function (e) {
-      const { $refs, tl, actualRotation, animating } = this
-      const time = 0.2
-      if (!animating){
-        const square = new TweenLite.to($refs.square, time,
-          {
-            rotation: -actualRotation,
-            ease: Power2.easeOut
-          })
-        const text = new TweenLite.to($refs.text, time + 0.2,
-          {
-            rotation: actualRotation,
-            ease: Power2.easeOut
-          })
-        tl.clear()
-        tl.add([square, text])
-      }
+      
     },
     onClickAnim: function () {
-      const { $refs, tl } = this
-      const time = 0.8
-      this.actualRotation += 90
-      this.setAnimating(true)
-      const square = new TweenLite.to($refs.square, time,
-        {
-          rotation: -this.actualRotation,
-          ease: Power2.easeOut
-        })
-      const text = new TweenLite.to($refs.text, time + 0.2,
-        {
-          rotation: this.actualRotation,
-          ease: Power1.easeOut
-        })
-      tl.clear()
-      tl.add([square, text]).add(this.setAnimating, '-=0.2')
-    },
-    setAnimating (bool = false) {
-      this.animating = bool
+      
     },
     enterAnim: function () {
       const { $el, tl, delay } = this

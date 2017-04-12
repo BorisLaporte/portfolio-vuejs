@@ -1,36 +1,38 @@
 <template>
   <div class="one-project" v-bind:class="{ pair: !isOdd }">
-    <div class="content-project" ref="main" >
+    <a :href="data.link" target="_blank" class="content-project" ref="main" @click="onClick" >
       <Thumbnail
-      :didEnter="didEnter"
+      :eventBus="eventBus"
       delay="0.1"
       :src="data.thumbnail" 
       :name="data.name" />
       <NbPlace
+      :eventBus="eventBus"
       :isOn="isOn"
       :data="naturalIndex" />
       <Technos
-      :didEnter="didEnter"
+      :eventBus="eventBus"
       delay="0.6" 
       :data="data.technos" />
       <OverContent
-      :didEnter="didEnter"
+      :eventBus="eventBus"
       delay="0.3" 
       :data="overPartContent" />
-    </div>
+    </a>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import ScrollMagic from 'scrollmagic'
+import { TweenLite, TimelineLite, Power2 } from 'gsap'
+import 'animation.gsap'
 
 import Thumbnail from './Thumbnail'
 import Technos from './Technos'
 import OverContent from './OverContent'
 import NbPlace from './NbPlace'
-
-import { EventBus } from './inner-bus'
 
 export default {
   name: 'one-project',
@@ -51,6 +53,9 @@ export default {
     ...mapGetters([
       'getScController'
     ]),
+    eventBus: function () {
+      return new Vue()
+    },
     overPartContent: function () {
       const { color, role, name, desc, mentions, link } = this.data
       return { color, role, name, desc, mentions, link }
@@ -64,21 +69,25 @@ export default {
   },
   methods: {
     onClick: function (e) {
+      // e.preventDefault()
       console.log(e)
     },
     setScene: function (controller) {
       const { $el } = this
+
+      const duration = $el.clientWidth * 1.70
       const scene = new ScrollMagic.Scene({
         triggerElement: $el,
         reverse: true,
-        duration: $el.clientWidth
+        duration: duration
       })
       .addTo(controller)
 
       const onEnter = this.onEnter.bind(this)
       const onLeave = this.onLeave.bind(this)
+      const onProgress = this.onProgress.bind(this)
 
-      scene.on('enter leave', function (event) {
+      scene.on('enter progress leave', function (event) {
         switch (event.type) {
           case 'enter':
             onEnter()
@@ -86,17 +95,24 @@ export default {
           case 'leave':
             onLeave()
             break
+          case 'progress':
+            onProgress(event)
+            break
           default:
             break
         }
       })
     },
+    onProgress: function (e) {
+      const { eventBus } = this
+      eventBus.$emit('progress', e)
+    },
     onEnter: function () {
-      const { $store } = this
+      const { $store, eventBus } = this
       this.isOn = true
       if (!this.didEnter){
         this.didEnter = true
-        EventBus.$emit('test', 'lol')
+        eventBus.$emit('enter')
       }
     },
     onLeave: function () {

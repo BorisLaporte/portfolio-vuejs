@@ -1,6 +1,6 @@
 <template>
   <div class="nb-place" v-bind:class="{ pair: !isOdd }">
-    <div class="content">
+    <div class="content" ref="mouseMove">
       <div class="number" v-bind:class="{ active: isOn }" >{{ data }}</div>
     </div>
   </div>
@@ -19,6 +19,9 @@ export default {
     tl: function () {
       return new TimelineMax()
     },
+    tlMouse: function () {
+      return new TimelineMax()
+    },
     tween: function () {
       const { $el } = this
       return new TweenMax.fromTo($el, 1,
@@ -34,13 +37,14 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('mouse-move', this.onMouseMove.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
   },
   methods: {
     enterAnim () {
-      const { $el } = this
+      const { $el, isOdd } = this
       const yValue = 20
-      const fromValueY = this.isOdd ? yValue : -yValue
+      const fromValueY = isOdd ? yValue : -yValue
       TweenMax.fromTo($el, 0.6,
         {
           opacity: 0,
@@ -52,6 +56,17 @@ export default {
           ease: Power2.easeOut,
           delay: 0.2
         })
+    },
+    onMouseMove (e) {
+      const { tlMouse, $refs, isOdd } = this
+      tlMouse.clear()
+      const tween = new TweenMax.to($refs.mouseMove, 0.2,
+        {
+          x: -e.x * 0.5,
+          y: -e.y * 0.5,
+          ease: Power2.ease
+        })
+      tlMouse.add([tween])
     },
     setupTween () {
       const { tl, tween } = this

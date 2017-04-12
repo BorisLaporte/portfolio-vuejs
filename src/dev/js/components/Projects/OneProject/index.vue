@@ -55,9 +55,13 @@ export default {
     OverContent,
     NbPlace
   },
+  mounted () {
+    window.addEventListener('mousemove', this.onMouseMove.bind(this))
+  },
   computed: {
     ...mapGetters([
-      'getScController'
+      'getScController',
+      'windowSize'
     ]),
     eventBus: function () {
       return new Vue()
@@ -76,6 +80,15 @@ export default {
   methods: {
     onClick: function (e) {
       // e.preventDefault()
+    },
+    onMouseMove: function (e) {
+      const { eventBus, windowSize } = this
+      const { width, height } = windowSize
+      const eventModified = {
+        x: (e.x - (width / 2)) * 0.01,
+        y: (e.y - (height / 2)) * 0.01
+      }
+      eventBus.$emit('mouse-move', eventModified)
     },
     onMouseOver: function (e) {
       const { mouseOver, eventBus } = this

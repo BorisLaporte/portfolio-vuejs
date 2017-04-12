@@ -1,7 +1,9 @@
 <template>
   <div class="technos">
-    <div class="content" ref="content">
-      <div class="text" ref="text" >{{ allTechnos }}</div>
+    <div ref="mouseMove" >
+      <div class="content" ref="content">
+        <div class="text" ref="text" >{{ allTechnos }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +22,9 @@ export default {
       return renderedTechnos.join(', ')
     },
     tl: function () {
+      return new TimelineMax()
+    },
+    tlHover: function () {
       return new TimelineMax()
     },
     tlMouse: function () {
@@ -41,6 +46,7 @@ export default {
     const { eventBus } = this
     this.setupTween()
     eventBus.$on('enter', this.enterAnim.bind(this))
+    eventBus.$on('mouse-move', this.onMouseMove.bind(this))
     eventBus.$on('on-hover', this.onHover.bind(this))
     eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
@@ -60,25 +66,35 @@ export default {
           delay: 0.8
         })
     },
-    onHover () {
+    onMouseMove (e) {
       const { tlMouse, $refs } = this
+      tlMouse.clear()
+      tlMouse.to($refs.mouseMove, 0.2,
+        {
+          x: e.x,
+          y: e.y,
+          ease: Power2.ease
+        })
+    },
+    onHover () {
+      const { tlHover, $refs } = this
       const tween = new TweenMax.to($refs.content, 0.4,
         {
           x: 30,
           ease: Power2.easeInOut
         })
-      tlMouse.clear()
-      tlMouse.add([tween])
+      tlHover.clear()
+      tlHover.add([tween])
     },
     leaveHover () {
-      const { tlMouse, $refs } = this
+      const { tlHover, $refs } = this
       const tween = new TweenMax.to($refs.content, 0.4,
         {
           x: 0,
           ease: Power2.easeInOut
         })
-      tlMouse.clear()
-      tlMouse.add([tween])
+      tlHover.clear()
+      tlHover.add([tween])
     },
     setupTween () {
       const { tl, tween } = this

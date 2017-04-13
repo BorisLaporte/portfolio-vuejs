@@ -1,5 +1,5 @@
 <template>
-  <div class="one-project" v-bind:class="{ pair: !isOdd }">
+  <div class="one-project" ref="section" v-bind:class="{ pair: !isOdd }">
     <a 
     :href="data.link"
     target="_blank"
@@ -105,9 +105,10 @@ export default {
     setScene: function (controller) {
       const { $el } = this
 
-      const duration = $el.clientWidth * 1.70
+      const duration = $el.clientWidth * 2
       const scene = new ScrollMagic.Scene({
         triggerElement: $el,
+        triggerHook: 0.7,
         reverse: true,
         duration: duration
       })

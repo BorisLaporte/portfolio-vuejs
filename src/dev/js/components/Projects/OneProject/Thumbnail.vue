@@ -42,7 +42,7 @@ export default {
       const { tlMouse, $refs } = this
       const tween = new TweenMax.to($refs.img, 0.4,
         {
-          scale: 1.1,
+          scale: 1.05,
           ease: Power2.easeInOut
         })
       tlMouse.clear()

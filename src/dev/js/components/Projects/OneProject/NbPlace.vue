@@ -24,7 +24,7 @@ export default {
     },
     tween: function () {
       const { $el } = this
-      return new TweenMax.fromTo($el, 1,
+      return new TweenMax.fromTo($el, 2,
         {
           x: 60
         },

@@ -44,7 +44,7 @@ export default {
     },
     paralax: function () {
       const { $el } = this
-      return new TweenMax.fromTo($el, 1,
+      return new TweenMax.fromTo($el, 2,
         {
           x: -140
         },
@@ -93,7 +93,6 @@ export default {
       const color = new TweenMax.to($refs.mouseColor, 0.2,
         {
           x: -e.x * 0.4,
-          y: -e.y * 0.8,
           ease: Power2.ease
         })
       tlMouse.add([color])
@@ -102,7 +101,7 @@ export default {
       const { tlHover, $refs } = this
       const tween = new TweenMax.to($refs.wrapperColor, 0.4,
         {
-          scaleY: 1.2,
+          scaleY: 1,
           ease: Power2.easeInOut
         })
       tlHover.clear()

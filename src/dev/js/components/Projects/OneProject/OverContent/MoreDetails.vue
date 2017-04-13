@@ -52,12 +52,12 @@ export default {
     },
     paralax: function () {
       const { $el } = this
-      return new TweenMax.fromTo($el, 1,
+      return new TweenMax.fromTo($el, 2,
         {
           x: 80
         },
         {
-          x: -65,
+          x: -35,
           ease: Power2.easeOut
         })
     }

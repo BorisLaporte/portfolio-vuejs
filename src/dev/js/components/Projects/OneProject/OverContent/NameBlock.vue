@@ -37,7 +37,7 @@ export default {
     },
     paralaxName: function () {
       const { name } = this.$refs
-      return new TweenMax.fromTo(name, 1,
+      return new TweenMax.fromTo(name, 2,
         {
           x: 60
         },
@@ -48,7 +48,7 @@ export default {
     },
     paralaxRole: function () {
       const { role } = this.$refs
-      return new TweenMax.fromTo(role, 1,
+      return new TweenMax.fromTo(role, 2,
         {
           x: 80
         },
@@ -66,6 +66,7 @@ export default {
     eventBus.$on('on-hover', this.onHover.bind(this))
     eventBus.$on('leave-hover', this.leaveHover.bind(this))
     eventBus.$on('progress', this.progressAnim.bind(this))
+
   },
   methods: {
     enterAnim () {

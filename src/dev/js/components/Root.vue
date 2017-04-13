@@ -76,15 +76,14 @@ export default {
 
     switchOrientationScroll: function (e) {
       const { wrapper } = this.$refs
-      const { deltaY } = e
+      const { deltaY, deltaX } = e
       const { scrollLeft, scrollWidth } = wrapper
-      let finalScroll = scrollLeft + deltaY
+      let finalScroll = scrollLeft + deltaY + deltaX
       if (finalScroll > scrollWidth) {
         finalScroll = scrollWidth
       } else if (finalScroll < 0) {
         finalScroll = 0
-      }
-      if (scrollLeft >= 0 && scrollLeft <= scrollWidth) {
+      } else {
         wrapper.scrollLeft = finalScroll
       }
       e.preventDefault()

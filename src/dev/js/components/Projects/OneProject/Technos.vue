@@ -32,7 +32,7 @@ export default {
     },
     tween: function () {
       const { $refs } = this
-      return new TweenMax.fromTo($refs.text, 1,
+      return new TweenMax.fromTo($refs.text, 2,
         {
           x: 40
         },

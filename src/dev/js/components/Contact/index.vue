@@ -85,10 +85,12 @@ export default {
       line-height: 2em;
     }
     .mail a{
-      position: relative;
       top: -25px;
       left: 0;
       color: $pink;
+      &::before{
+        display: none;
+      }
     }
   }
 }

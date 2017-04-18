@@ -24,6 +24,7 @@ class TextPixi {
 
   init () {
     const { spaceWidth, spaceHeight } = this
+    PIXI.settings.RESOLUTION = 4
     this.initTextures()
     this.calcSizeLetter({
       spaceWidth: spaceWidth,

@@ -75,11 +75,13 @@ class MainChars {
   init () {
     const { target, style, spaceWidth, spaceHeight, size, limitAlpha } = this
     const { width, height } = size
-    PIXI.resolution = 4
+    PIXI.settings.RESOLUTION = 4
     const app = new PIXI.Application(width, height, { transparent: true })
     target.appendChild(app.view)
 
     app.renderer.autoResize = true
+
+    app.renderer.resize(width, height)
     app.stop()
 
     var container = new PIXI.Container()

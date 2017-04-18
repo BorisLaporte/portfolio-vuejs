@@ -32,7 +32,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import ScrollMagic from 'scrollmagic'
-import { TweenLite, TimelineLite, Power2 } from 'gsap'
+import { TweenLite, TimelineMax, Power2 } from 'gsap'
 
 import Thumbnail from './Thumbnail'
 import Technos from './Technos'
@@ -141,7 +141,7 @@ export default {
     onEnter: function () {
       const { $store, eventBus } = this
       this.isOn = true
-      if (!this.didEnter){
+      if (!this.didEnter) {
         this.didEnter = true
         eventBus.$emit('enter')
       }
@@ -192,6 +192,7 @@ export default {
     height: 300px;
     left: 27%;
     cursor: pointer;
+    display: inline-block;
 
     @media screen and (max-height: 900px) {
       width: 400px;

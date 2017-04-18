@@ -56,7 +56,8 @@ class MainChars {
     this.removeHardText = this.removeHardText.bind(this)
     this.init = this.init.bind(this)
     // AVOID FONT LAODING PROBLEMS
-    this.loadAndCallback(this.init)
+    window.addEventListener('load', this.loadAndCallback.bind(this, this.init))
+    // this.loadAndCallback(this.init)
   }
 
   loadAndCallback (callback) {
@@ -211,7 +212,6 @@ class MainChars {
     for (let i = 0; i < size; i++) {
       const column = i + columnStart
       const _mapChild = mapChildren.reversedMap[line + '-' + column]
-      // console.log(_mapChild.char)
       if (_mapChild.char !== null) {
         container.removeChild(_mapChild.char)
       }
@@ -295,16 +295,9 @@ class MainChars {
     const { app, container, loaded } = this
     if (loaded) {
       app.stop()
-      // app.stage.removeChild(container)
       app.view.style.width = width
       app.view.style.height = height
       app.renderer.resize(width, height)
-      // const newContainer = new PIXI.Container()
-      // app.stage.addChild(newContainer)
-      // this.container = newContainer
-      // this.size = { width: width, height: height }
-      // this.calcSpecs()
-      // this.initBoard()
       app.start()
     }
   }

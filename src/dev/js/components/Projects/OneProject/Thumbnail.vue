@@ -1,6 +1,4 @@
 <template>
-  <!-- <div class="thumbnail" :style="{backgroundImage: 'url('+imgSource+')'}" >
-  </div> -->
   <div class="wrapper-thumbnail">
     <div class="thumbnail" ref="thumbnail" >
       <img ref="img" :src="imgSource" :alt="name">
@@ -90,6 +88,7 @@ export default {
     opacity: 0;
     transform-origin: 50% 50% 0;
     transform: scale(0.8);
+    overflow: hidden;
 
     img{
       width: 110%;
@@ -105,7 +104,7 @@ export default {
     left: 0;
     transform-origin: 100% 50% 0px;
     transform: scaleX(1);
-    width: 100%;
+    width: 115%;
     height: 100%;
     background-color: $blackBack;
   }

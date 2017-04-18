@@ -69,14 +69,14 @@ export default {
 <style lang="scss" scoped>
 #Logo {
   position: relative;
-  width: 45px;
-  height: 45px;
+  width: 43px;
+  height: 43px;
   background-color: $pink;
   flex-shrink: 0;
 
   .text{
     font-family: $garamond;
-    font-size: 1.25em;
+    font-size: 1.20em;
     position: relative;
     color: $blackFont;
     position: absolute;

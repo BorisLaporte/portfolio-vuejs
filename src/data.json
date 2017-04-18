@@ -2,14 +2,22 @@
   "home":{
     "hi": "Hello everybody,",
     "whoAmI": "My name is **Boris Laporte**, I am a French full-stack developer based in Paris.\n\rI'm a fourth year student at Hetic.",
-    "status" : "I love traveling all around the world and I'm **looking for a 6 months internship** anywhere.\n\r(july to december)"
+    "status" : "I love traveling around the world and I'm **looking for a 6 months internship** anywhere.\n\r(july to december)"
 
   },
   "contact": {
-    "punchline": "Let's talk together ✌️",
+    "punchline": "Let's talk together",
+    "emoji": "✌️", 
     "mail": {
       "name": "boris.laporte@protonmail.com",
       "url":  "mailto:boris.laporte@protonmail.com"
+    },
+    "design": {
+      "text": "Design by",
+      "author": {
+        "name": "Pauline Taveneau",
+        "url": "http://paulinetaveneau.fr/home"
+      }
     }
   },
   "links": [

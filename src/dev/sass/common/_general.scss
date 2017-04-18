@@ -4,6 +4,8 @@ body{
   background-color: $blackBack;
   color: $white;
   font-family: $garamond;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   @media screen and (max-width: 1650px) {
     font-size: 14px;
   }
@@ -13,13 +15,6 @@ body{
   @media screen and (max-width: 500px) {
     font-size: 12px;
   }
-}
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-tap-highlight-color: transparent;
 }
 
 div, a{

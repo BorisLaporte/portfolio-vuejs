@@ -42,7 +42,7 @@ export default {
     height: 100%;
     padding: 1px;
     background-color: $pink;
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     transition: transform 0.6s ease-in-out;
   }
 
@@ -52,7 +52,7 @@ export default {
     }
     &::after{
       z-index: 20;
-      transform: translateX(100%);
+      transform: translateX(101%);
     }
   }
 }

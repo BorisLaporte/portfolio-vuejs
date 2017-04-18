@@ -10,7 +10,6 @@ class TextPixi {
       charWidth: 0,
       charHeight: 0
     }
-    this.resolution = options.resolution || 4
     this.spaceWidth = options.spaceWidth || 0
     this.spaceHeight = options.spaceHeight || 0
 
@@ -42,9 +41,7 @@ class TextPixi {
   createTextureChar (char) {
     const { style, resolution, textures, renderer, letters } = this
     const letter = new PIXI.Text(char, style)
-    letter.resolution = resolution
-    // letter.cacheAsBitmap = true
-    const texture = renderer.generateTexture(letter, 1, resolution)
+    const texture = renderer.generateTexture(letter, 1)
     textures.push(texture)
     letters[char] = texture
   }
@@ -69,8 +66,6 @@ class TextPixi {
     sprite.x = x * charWidth
     sprite.y = y * charHeight
     sprite.alpha = alpha
-    sprite.resolution = resolution
-    // sprite.cacheAsBitmap = true
     return sprite
   }
 

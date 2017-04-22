@@ -56,6 +56,11 @@ class MainChars {
     this.removeHardText = this.removeHardText.bind(this)
     this.init = this.init.bind(this)
     // AVOID FONT LAODING PROBLEMS
+    // const self = this
+    // setTimeout(function() {
+    //   self.loadAndCallback(self.init)
+    // }, 2000);
+
     window.addEventListener('load', this.loadAndCallback.bind(this, this.init))
     // this.loadAndCallback(this.init)
   }
@@ -86,6 +91,8 @@ class MainChars {
 
     var container = new PIXI.Container()
     container.alpha = 0
+    container.x = 0
+    container.y = 0
     app.stage.addChild(container)
 
     const textPixi = new TextPixi(app.renderer, {
@@ -294,7 +301,7 @@ class MainChars {
   }
 
   resize (width, height) {
-    const { app, container, loaded } = this
+    const { app, loaded } = this
     if (loaded) {
       app.stop()
       app.view.style.width = width

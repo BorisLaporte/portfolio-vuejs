@@ -26,11 +26,13 @@
       "content": [
         {
           "name": "Mail me",
-          "url":  "mailto:boris.laporte@protonmail.com"
+          "url":  "mailto:boris.laporte@protonmail.com",
+          "img": "./Mail.svg"
         },
         {
           "name": "Linkedin",
-          "url": "https://linkedin.com/in/boris-laporte-65ab18a8"
+          "url": "https://linkedin.com/in/boris-laporte-65ab18a8",
+          "img": "./Linkedin.svg"
         }
       ]
     },
@@ -39,11 +41,13 @@
       "content": [
         {
           "name": "Github",
-          "url": "https://github.com/BorisLaporte"
+          "url": "https://github.com/BorisLaporte",
+          "img": "./Github.svg"
         },
         {
           "name": "500px",
-          "url": "https://500px.com/borislaporte"
+          "url": "https://500px.com/borislaporte",
+          "img": "./500px.svg"
         }
       ]
     }

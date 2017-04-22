@@ -5,7 +5,8 @@ import { getters } from './getters'
 const state = {
   width: 0,
   height: 0,
-  orientation: LANDSCAPE
+  orientation: LANDSCAPE,
+  isMobile: false
 }
 
 export default {

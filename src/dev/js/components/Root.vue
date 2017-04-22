@@ -2,15 +2,19 @@
   <div id="root">
     <div class="app-container">
       <div class="wrapper" ref="wrapper" >
-        <div class="scroller" ref="scroller">
+        <div v-if="!this.isMobile"  class="scroller" ref="scroller">
           <Home />
           <Projects />
           <Contact />
         </div>
+        <div v-else class="mobile-wrapper">
+          <Home />
+          <MobileLinks />
+        </div>
       </div>
     </div>
     <FixedHeader />
-    <Progression />
+    <Progression v-if="!this.isMobile" />
   </div>
 </template>
 
@@ -25,6 +29,7 @@ import Projects from './Projects'
 import Contact from './Contact'
 import Progression from './Progression'
 import FixedHeader from './FixedHeader'
+import MobileLinks from './MobileLinks'
 
 export default {
   name: 'root',
@@ -33,29 +38,14 @@ export default {
     Projects,
     Contact,
     Progression,
-    FixedHeader
+    FixedHeader,
+    MobileLinks
   },
   computed: {
     ...mapGetters([
-      'scrollBack'
+      'scrollBack',
+      'isMobile'
     ])
-  },
-  watch: {
-    scrollBack: function (value) {
-      const { $refs } = this
-      const { scrollLeft, scrollWidth } = $refs.wrapper
-      if (value) {
-        const duration = (scrollLeft / scrollWidth) + 1
-        const tl = new TimelineLite()
-        const tween = TweenLite.to($refs.wrapper, duration,
-          {
-            scrollLeft: 0,
-            ease: Power2.easeOut
-          })
-        tl.clear()
-        tl.add([tween]).add(this.finishScrollBack)
-      }
-    }
   },
   data: function () {
     return {
@@ -64,9 +54,12 @@ export default {
     }
   },
   mounted () {
+    const { $refs } = this
     this.finishScrollBack = this.finishScrollBack.bind(this)
     this.switchOrientationScroll = this.switchOrientationScroll.bind(this)
-    this.init()
+    if ($refs.scroller !== undefined) {
+      this.init()
+    }
   },
   methods: {
     init: function () {
@@ -115,6 +108,23 @@ export default {
         $store.commit(types.PROGRESS, { progress: calcProgress })
       })
       $store.commit(types.INIT, { controller: scController })
+    }
+  },
+  watch: {
+    scrollBack: function (value) {
+      const { $refs } = this
+      const { scrollLeft, scrollWidth } = $refs.wrapper
+      if (value) {
+        const duration = (scrollLeft / scrollWidth) + 1
+        const tl = new TimelineLite()
+        const tween = TweenLite.to($refs.wrapper, duration,
+          {
+            scrollLeft: 0,
+            ease: Power2.easeOut
+          })
+        tl.clear()
+        tl.add([tween]).add(this.finishScrollBack)
+      }
     }
   }
 }

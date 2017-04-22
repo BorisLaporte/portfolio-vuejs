@@ -8,5 +8,9 @@ export const getters = {
       width: state.width,
       height: state.height
     }
+  },
+  isMobile (state) {
+    const { isMobile } = state
+    return isMobile
   }
 }

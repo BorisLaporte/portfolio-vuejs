@@ -14,7 +14,7 @@
 import { mapGetters } from 'vuex'
 import * as status from 'STORE/scroll/status-types'
 import * as types from 'STORE/scroll/mutation-types'
-import { TimelineLite, TimelineMax, TweenLite, TweenMax, Power2 } from 'gsap'
+import { TimelineLite, TweenLite, Power2 } from 'gsap'
 import ScrollMagic from 'scrollmagic'
 import 'animation.gsap'
 import marked from 'marked'
@@ -120,7 +120,7 @@ export default {
 
     },
     setSceneEvent (controller) {
-      const { $el, $refs } = this
+      const { $refs } = this
       const tl = new TimelineLite()
       const tween = tl.to($refs.container, 0.5, {
         opacity: 0,
@@ -144,6 +144,9 @@ export default {
 <style lang="scss">
 #home {
   .container{
+    @media screen and (orientation: portrait) and (max-width: 680px){
+      top: calc(50% - 50px);
+    }
 
     .title{
       padding-top: 80px;

@@ -106,5 +106,13 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+
+  canvas{
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 </style>

@@ -4,7 +4,7 @@ import * as PIXI from 'pixi.js'
 
 class TextPixi {
   constructor (renderer, options) {
-    this.limitAlpha = options.limitAlpha || 0.05
+    this.limitAlpha = options.limitAlpha || 0.08
     this.style = options.style
     this.size = {
       charWidth: 0,
@@ -40,7 +40,7 @@ class TextPixi {
   }
 
   createTextureChar (char) {
-    const { style, resolution, textures, renderer, letters } = this
+    const { style, textures, renderer, letters } = this
     const letter = new PIXI.Text(char, style)
     const texture = renderer.generateTexture(letter, 1)
     textures.push(texture)
@@ -48,7 +48,7 @@ class TextPixi {
   }
 
   createPixiChar (args = {}) {
-    const { limitAlpha, size, resolution, textures, letters } = this
+    const { limitAlpha, size, textures, letters } = this
     const { charWidth, charHeight } = size
     const x = args.x || 0
     const y = args.y || 0

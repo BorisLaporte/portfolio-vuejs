@@ -1,11 +1,12 @@
 <template>
   <div id="fixed-header">
     <Logo/>
-    <AllLinks/>
+    <AllLinks v-if="!this.isMobile"/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AllLinks from './AllLinks'
 import Logo from './Logo'
 
@@ -14,6 +15,11 @@ export default {
   components: {
     AllLinks,
     Logo
+  },
+  computed: {
+    ...mapGetters([
+      'isMobile'
+    ])
   }
 }
 </script>

@@ -63,7 +63,8 @@ export default {
   },
   methods: {
     init: function () {
-      document.body.addEventListener('wheel', this.switchOrientationScroll)
+      // document.body.addEventListener('wheel', this.switchOrientationScroll)
+      document.body.onwheel = this.switchOrientationScroll
       this.setScrollMagic()
     },
 
@@ -71,7 +72,7 @@ export default {
       const { wrapper } = this.$refs
       const { deltaY, deltaX } = e
       const { scrollLeft, scrollWidth } = wrapper
-      let finalScroll = scrollLeft + deltaY + deltaX
+      let finalScroll = scrollLeft + (deltaY + deltaX) * 0.7
       if (finalScroll > scrollWidth) {
         finalScroll = scrollWidth
       } else if (finalScroll < 0) {
@@ -79,6 +80,7 @@ export default {
       } else {
         wrapper.scrollLeft = finalScroll
       }
+      // console.log(wrapper)
       e.preventDefault()
     },
 

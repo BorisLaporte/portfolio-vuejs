@@ -24,7 +24,6 @@ class TextPixi {
 
   init () {
     const { spaceWidth, spaceHeight } = this
-    PIXI.settings.RESOLUTION = 4
     this.initTextures()
     this.calcSizeLetter({
       spaceWidth: spaceWidth,
@@ -63,7 +62,7 @@ class TextPixi {
       const rand = Math.floor(Math.random() * textures.length)
       newTexture = textures[rand]
     }
-    const sprite = new PIXI.Sprite(newTexture)
+    const sprite = new PIXI.Sprite.from(newTexture)
     sprite.x = x * charWidth
     sprite.y = y * charHeight
     sprite.alpha = alpha
@@ -74,7 +73,7 @@ class TextPixi {
     const { textures } = this
     const spaceWidth = args.spaceWidth || 0
     const spaceHeight = args.spaceHeight || 0
-    const testSprite = new PIXI.Sprite(textures[0])
+    const testSprite = new PIXI.Sprite.from(textures[0])
     const charWidth = testSprite.width + spaceWidth
     const charHeight = testSprite.height + spaceHeight
     const result = {

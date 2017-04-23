@@ -55,14 +55,7 @@ class MainChars {
 
     this.removeHardText = this.removeHardText.bind(this)
     this.init = this.init.bind(this)
-    // AVOID FONT LAODING PROBLEMS
-    // const self = this
-    // setTimeout(function() {
-    //   self.loadAndCallback(self.init)
-    // }, 2000);
-
-    window.addEventListener('load', this.loadAndCallback.bind(this, this.init))
-    // this.loadAndCallback(this.init)
+    this.loadAndCallback(this.init)
   }
 
   loadAndCallback (callback) {
@@ -80,13 +73,10 @@ class MainChars {
   init () {
     const { target, style, spaceWidth, spaceHeight, size, limitAlpha } = this
     const { width, height } = size
-    PIXI.settings.RESOLUTION = 4
-    const app = new PIXI.Application(width, height, { transparent: true })
+    PIXI.settings.RESOLUTION = window.devicePixelRatio
+    const app = new PIXI.Application(width, height, { transparent: true, autoResize: true })
+
     target.appendChild(app.view)
-
-    app.renderer.autoResize = true
-
-    app.renderer.resize(width, height)
     app.stop()
 
     var container = new PIXI.Container()

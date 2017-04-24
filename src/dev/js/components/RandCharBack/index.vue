@@ -1,5 +1,13 @@
 <template>
-  <div id="rand-char-back"></div>
+  <div id="rand-char-back">
+    <div class="font-preloader">
+      <span class="camingo">a</span>
+      <span class="harmonia">a</span>
+      <span class="garamond-regular">a</span>
+      <span class="garamond-bold">a</span>
+      <span class="garamond-italic">a</span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -106,7 +114,17 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  font-family: $camingo;
+
+  .font-preloader{
+    opacity: 0;
+    position: absolute;
+    .camingo{font-family: $camingo;}
+    .harmonia{font-family: $harmonia;}
+    .garamond-regular{font-family: $garamond;}
+    .garamond-italic{font-family: $garamondItalic;}
+    .garamond-bold{font-family: $garamondBold;}
+  }
+
 
   canvas{
     max-height: 100%;

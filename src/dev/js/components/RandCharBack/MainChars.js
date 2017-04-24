@@ -66,7 +66,9 @@ class MainChars {
         families: [style.fontFamily]
       },
       active: function () {
-        setTimeout(callback, 100)
+        // SAFARI HOT FIX
+        // WAIT MANUALLY UNTIL THE FONTS ARE LOADED
+        setTimeout(callback, 500)
       }
     })
   }

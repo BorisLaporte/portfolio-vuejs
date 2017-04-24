@@ -61,11 +61,12 @@ class MainChars {
   loadAndCallback (callback) {
     const { style } = this
     WebFont.load({
+      classes: false,
       custom: {
         families: [style.fontFamily]
       },
       active: function () {
-        callback()
+        setTimeout(callback, 100)
       }
     })
   }

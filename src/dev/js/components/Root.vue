@@ -1,5 +1,5 @@
 <template>
-  <div id="root">
+  <div id="root" >
     <div class="app-container">
       <div class="wrapper" ref="wrapper" >
         <div v-if="!this.isMobile"  class="scroller" ref="scroller">
@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     init: function () {
-      // document.body.addEventListener('wheel', this.switchOrientationScroll)
       document.body.onwheel = this.switchOrientationScroll
       this.setScrollMagic()
     },
@@ -77,10 +76,8 @@ export default {
         finalScroll = scrollWidth
       } else if (finalScroll < 0) {
         finalScroll = 0
-      } else {
-        wrapper.scrollLeft = finalScroll
       }
-      // console.log(wrapper)
+      wrapper.scrollLeft = finalScroll
       e.preventDefault()
     },
 
@@ -146,7 +143,7 @@ export default {
       top: 0;
       left: 0;
       overflow: hidden;
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       width: inherit;
       height: inherit;
 

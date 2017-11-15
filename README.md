@@ -1,3 +1,20 @@
-# React Starter
+# Portfolio vue-js :cat:
 
-## Custom starter based on webpack for react applications with greensock and scroll magic
+A little portfolio to discover vue-js
+
+## install 🍏
+```
+npm install
+```
+
+## development 🍓
+```
+npm run dev
+```
+
+## production 🍿
+```
+npm run build
+```
+
+Note : the compiled project will be stored in `build` folder
